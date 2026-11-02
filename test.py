@@ -2,4 +2,4 @@ print("Hello World")
 
 print("Test")
 
-print("Figg ds Programmierprojekt")
+print("I cha nümme")
