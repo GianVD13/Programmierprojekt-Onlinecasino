@@ -1,2 +1,9 @@
-# Programmierprojekt-Onlinecasino
-Programmierprojekt in Grundlagen programmierung in welchem ein einfaches Online Casino programmiert werden soll
+Aufteilung Projektarbeit Online Casino
+
+Jonas = main.py + daten.py
+
+Ruben = konto.py
+
+Gian = roulette.py
+
+Noah = auswertung.py
