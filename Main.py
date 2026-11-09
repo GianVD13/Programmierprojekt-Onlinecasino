@@ -12,7 +12,7 @@ def hauptmenü(spieler, name): #Definition vom Hauptmenü mit while Schleife man
         print("2 Statistik")
         print("3 Ausloggen")
         auswahl = input("Auswahl (1,2,3): ")
-
+            # string in int umwandeln. wäre saubere
         if auswahl == "1": #Ruft die Funktion roulette.runde in Roulette auf
             roulette.runde(spieler, name)
         elif auswahl == "2": #Ruft die Funktion konto.statisktik in Statistik auf
@@ -30,7 +30,7 @@ def startmenü(spieler): #Das Startmenü definiert mit einer while schleife kann
         print ("1 Registrieren")
         print ("2 Login")
         print ("3 Beenden")
-        auswahl = input("Auswahl (1,2,3): ")
+        auswahl = input("Auswahl (1,2,3): ") #auch wieder string in int umwandeln
 
         if auswahl == "1": # wenn 1 wird die Funktion registieren aus der Datei Konto aufgerufen
             konto.registrieren(spieler)

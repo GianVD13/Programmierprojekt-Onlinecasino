@@ -3,16 +3,15 @@
 
 def registrieren ():
     benutzername = input("Gib deinen neuen Benutzernamen ein:")
-    while benutzername == "":
+    while benutzername == "": #min. 2 bei Benutzername länge
         print("Benutzername darf nicht leer sein")
         benutzername = input("Gib deinen neuen Benutzernamen ein:")
     # while Benutzername in Liste von allen user | ihr die Liste von allen User einfügen, darf nicht den gleichen Usernamen haben. 
-    passwort = input("Gib dein neues Passwort ein:")
-    passwort_länge = len(passwort)
-    while passwort_länge <= 6:
+    passwort = ""
+    while passwort_laenge <= 6:
         print("Passwort muss mindest 6 Zeichen lang sein")
         passwort = input("Gib dein neues Passwort ein:")
-        passwort_länge = len(passwort)
+        passwort_laenge = len(passwort)
     print("Benutzer erstellt und Startguthaben von 100 CHF zugewiesen")
     startguthaben = 100
     return(benutzername, passwort, startguthaben)
@@ -27,7 +26,7 @@ def login (): #Muss dann den User einfügen, aktuell noch nicht vorhanden
         benutzer_eingabe = input("Gib dein Benutzer ein:")
         passwort_eingabe = input("Gib dein passwort ein:")
     print("Login erfolgreich")
-    return()
+    return(benutzer_eingabe, passwort_eingabe)
     
 login()
 
