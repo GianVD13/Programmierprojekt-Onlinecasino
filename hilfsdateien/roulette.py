@@ -6,6 +6,8 @@ ERLAUBTE_WOERTER = ["rot", "schwarz", "gerade", "ungerade"]
 
 #einlesen im loop schaut ob die Wette richtig eingegeben wird. mit.strip und.lower werden 
 #  Falscheingaben korrigiert.
+
+
 def wette_einlesen():
     while True:
         eingabe = input("Worauf setzt du? (0-36, rot, schwarz, gerade, ungerade):")
@@ -46,9 +48,10 @@ def wetten_anzeigen(wetten, restguthaben):
 
 def runde(spieler, name):
     guthaben = spieler[name]["guthaben"]
+    
 
 if guthaben < MINDESTEINSATZ:
-    print("Gane Over - Guthaben ist zu klein.")
+    print("Game Over - Guthaben ist zu klein.")
     return
 
 wetten = []
@@ -66,6 +69,7 @@ while True:
 
 #inner loop (menu, drehen, abbrechen)
 
-
+while True:
+    wahl = input("weiter / drehen / abbrechen?")
 
 
