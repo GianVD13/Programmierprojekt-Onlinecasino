@@ -38,4 +38,34 @@ def summe_einsaetze(wetten):
         summe += wette["einsatz"]
     return summe
 
+def wetten_anzeigen(wetten, restguthaben):
+    print("Deine Wetten:")
+    for wette in wetten:
+        print(f"CHF {wette["einsatz"]} auf {wette["auf"]}")
+    print(f"Restguthaben: CHF {restguthaben}")
+
+def runde(spieler, name):
+    guthaben = spieler[name]["guthaben"]
+
+if guthaben < MINDESTEINSATZ:
+    print("Gane Over - Guthaben ist zu klein.")
+    return
+
+wetten = []
+
+#loop um eine wette nach der anderen zu setzen:
+while True:
+    restguthaben = guthaben - summe_einsaetze(wetten)
+    auf = wette_einlesen()
+    einsatz = einsatz_einlesen(restguthaben)
+
+    #wetten speichern
+    wetten.append({"auf": auf, "einsatz": einsatz})
+    restguthaben = restguthaben - einsatz
+    wetten_anzeigen(wetten, restguthaben)
+
+#inner loop (menu, drehen, abbrechen)
+
+
+
 
