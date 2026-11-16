@@ -2,8 +2,6 @@ from hilfsdateien import daten #Import der anderen Dateien
 from hilfsdateien import konto
 from hilfsdateien import roulette
 
-
-
 def hauptmenü(spieler, name): #Definition vom Hauptmenü mit while Schleife man kann auswählen was man will
     while True:
         print("Spieler:", spieler[name]["name"])
@@ -44,4 +42,5 @@ def startmenü(spieler): #Das Startmenü definiert mit einer while schleife kann
         else:
             print("Ungültige Eingabe, bitte 1,2 oder 3 eingeben.")
 
-startmenü({"Jonas": {"name": "Jonas", "guthaben": 100}})
+spieler = daten.laden()  # NEU: beim Start alle Spieler aus spieler.txt laden
+startmenü(spieler)       # NEU: Programm starten mit den geladenen Spielern
