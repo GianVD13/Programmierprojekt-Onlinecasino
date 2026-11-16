@@ -1,6 +1,7 @@
 #import main
 #from hilfsdateien  import daten
 
+
 def registrieren ():
     benutzername = input("Gib deinen neuen Benutzernamen ein:")
     while benutzername == "": #min. 2 bei Benutzername länge
