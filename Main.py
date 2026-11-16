@@ -9,13 +9,13 @@ def hauptmenü(spieler, name): #Definition vom Hauptmenü mit while Schleife man
         print("1 Roulette")
         print("2 Statistik")
         print("3 Ausloggen")
-        auswahl = input("Auswahl (1,2,3): ")
-            # string in int umwandeln. wäre saubere
-        if auswahl == "1": #Ruft die Funktion roulette.runde in Roulette auf
+        auswahl = int(input("Auswahl (1,2,3): "))
+        
+        if auswahl == 1: #Ruft die Funktion roulette.runde in Roulette auf
             roulette.runde(spieler, name)
-        elif auswahl == "2": #Ruft die Funktion konto.statisktik in Statistik auf
+        elif auswahl == 2: #Ruft die Funktion konto.statisktik in Statistik auf
             konto.statistik(spieler, name)
-        elif auswahl == "3": #kommt zurück zum Startmenü
+        elif auswahl == 3: #kommt zurück zum Startmenü
             print ("Sie wurden ausgeloggt")
             break
         else:
@@ -28,19 +28,19 @@ def startmenü(spieler): #Das Startmenü definiert mit einer while schleife kann
         print ("1 Registrieren")
         print ("2 Login")
         print ("3 Beenden")
-        auswahl = input("Auswahl (1,2,3): ") #auch wieder string in int umwandeln
+        auswahl = int(input("Auswahl (1,2,3): ")) 
 
-        if auswahl == "1": # wenn 1 wird die Funktion registieren aus der Datei Konto aufgerufen
+        if auswahl == 1: # wenn 1 wird die Funktion registieren aus der Datei Konto aufgerufen
             konto.registrieren(spieler)
-        elif auswahl == "2": # wenn 2 wird die Funktion Login aus der Datei Konto aufgerufen
+        elif auswahl == 2: # wenn 2 wird die Funktion Login aus der Datei Konto aufgerufen
             name = konto.login(spieler)
             if name is not None: #wenn Name nicht None ist wird das Hauptmenü aufgerufen
                 hauptmenü(spieler, name)
-        elif auswahl == "3": # wenn 2 wird Break
+        elif auswahl == 3: # wenn 2 wird Break
             print ("Auf Wiedersehen")
             break
         else:
             print("Ungültige Eingabe, bitte 1,2 oder 3 eingeben.")
 
-spieler = daten.laden()  # NEU: beim Start alle Spieler aus spieler.txt laden
-startmenü(spieler)       # NEU: Programm starten mit den geladenen Spielern
+spieler = daten.laden()  # beim Start alle Spieler aus spieler.txt laden
+startmenü(spieler)       # Programm starten mit den geladenen Spielern
