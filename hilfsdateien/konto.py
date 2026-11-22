@@ -4,7 +4,7 @@ from hilfsdateien  import daten
 def registrieren (spieler):
     print("Benutzername muss mindestens zwei Zeichen lang sein")
     benutzername = input("Gib deinen neuen Benutzernamen ein:")
-    while len(benutzername) <=1: #Schleife damit der Benutzer mindest zwei Zeichen lang ist. 
+    while len(benutzername) <=2: #Schleife damit der Benutzer mindest zwei Zeichen lang ist. 
         print("Benutzername zu kurz")
         benutzername = input("Gib deinen neuen Benutzernamen ein:")
     while benutzername.lower() in spieler:
@@ -29,21 +29,21 @@ def registrieren (spieler):
     print("Benutzer erstellt und Startguthaben von 100 CHF zugewiesen")
 
 
-def login (): 
+def login (spieler): 
     benutzer_eingabe = input("Gib dein Benutzer ein:")
-    passwort_eingabe = input("Gib dein Passwort ein:")
-    with open(spiel_datei, 'r', encoding='utf-8') as file:
-        benutzername_datei = file.read
-    while benutzer_eingabe and passwort_eingabe != benutzername_datei: 
-        print("Login fehlgeschlagen, User oder Passwort falsch")
+    while benutzer_eingabe.lower() not in spieler:
+        print("Login fehlgeschlagen, Benutzer nicht vorhanden")
         benutzer_eingabe = input("Gib dein Benutzer ein:")
+
+    user = benutzer_eingabe.lower()
+    passwort_eingabe = input("Gib dein Passwort ein:")
+    while passwort_eingabe != spieler[user]["passwort"]:
+        print("Passwort falsch")
         passwort_eingabe = input("Gib dein Passwort ein:")
     print("Login erfolgreich")
-    return(benutzer_eingabe, passwort_eingabe)
+    return(user)
     
-login()
 
-def statistik (): # Mit User ausfüllen, in diesem sind alle Spielerdaten gespeichert
-   # print(user.(anzahl_spiele))
-   # print (user.(Guthaben))
+def statistik (spieler): 
+
    return()

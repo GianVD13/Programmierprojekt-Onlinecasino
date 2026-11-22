@@ -1,5 +1,2 @@
-#Benutzername #Passwort #Guthaben #Anzahle Spiele #Gewinne #Verluste
-#Beispiel:
-#Hans #1234567 #60 #4 #0 #40
-Ruben,Ruben1234,100,0,0,0,
-
+Test;Test123456;100;0;0;0
+Ruben;Ruben1234;100;0;0;0
