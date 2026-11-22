@@ -35,15 +35,19 @@ def login (spieler):
         print("Login fehlgeschlagen, Benutzer nicht vorhanden")
         benutzer_eingabe = input("Gib dein Benutzer ein:")
 
-    user = benutzer_eingabe.lower()
+    name = benutzer_eingabe.lower()
     passwort_eingabe = input("Gib dein Passwort ein:")
-    while passwort_eingabe != spieler[user]["passwort"]:
+    while passwort_eingabe != spieler[name]["passwort"]:
         print("Passwort falsch")
         passwort_eingabe = input("Gib dein Passwort ein:")
     print("Login erfolgreich")
-    return(user)
+    return(name)
     
 
-def statistik (spieler): 
+def statistik (spieler, name): 
+    print("Statistik von", spieler[name]["name"])
+    print("Guthaben: ", spieler[name]["guthaben"])
+    print("Anzahl Spiele:", spieler[name]["spiele"])
+    print("Gewinne:", spieler[name]["gewinne"])
+    print("Verluste:", spieler[name]["verluste"])
 
-   return()
