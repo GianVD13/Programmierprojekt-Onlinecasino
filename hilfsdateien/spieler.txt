@@ -1,3 +1,6 @@
 #Benutzername #Passwort #Guthaben #Anzahle Spiele #Gewinne #Verluste
 #Beispiel:
 #Hans #1234567 #60 #4 #0 #40
+
+
+
