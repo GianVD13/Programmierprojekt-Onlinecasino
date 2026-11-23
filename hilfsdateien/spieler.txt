@@ -1,2 +1,3 @@
 Test;Test123456;100;5;30;10
 Ruben;Ruben1234;100;0;0;0
+Jonas;Jonas1234;0;4;1;3
