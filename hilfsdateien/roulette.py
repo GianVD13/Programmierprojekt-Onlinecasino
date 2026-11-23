@@ -7,38 +7,44 @@ ERLAUBTE_WOERTER = ["rot", "schwarz", "gerade", "ungerade"]
 #einlesen im loop schaut ob die Wette richtig eingegeben wird. mit.strip und.lower werden 
 #  Falscheingaben korrigiert.
 
+def ist_gueltige_wette(eingabe):
+    if eingabe in ERLAUBTE_WOERTER:
+        return True
+    try:
+        zahl = int(eingabe)
+    except ValueError:
+        return False
+    else:
+        return 0 <= zahl <= 36
+
 
 def wette_einlesen():
-    while True:
+    eingabe = input("Worauf setzt du? (0-36, rot, schwarz, gerade, ungerade):")
+    while not ist_gueltige_wette(eingabe):
+        print("ungültige Zahl")
         eingabe = input("Worauf setzt du? (0-36, rot, schwarz, gerade, ungerade):")
-        eingabe = eingabe.strip().lower()
-        if eingabe in ERLAUBTE_WOERTER:
-            return eingabe
-        try:
-            zahl = int(eingabe)
-            if 0 <= zahl <= 36:
-                return zahl
-        except ValueError:
-            pass
-        print("Ungültige Zahl")
+
+    if eingabe in ERLAUBTE_WOERTER:
+        return eingabe
+    return int(eingabe)
+
+def ist_gueltiger_einsatz(eingabe, restguthaben):
+    try:
+        einsatz = int(eingabe)
+    except ValueError:
+        return False
+    else:
+        return MINDESTEINSATZ <= einsatz <= restguthaben
+
 
 def einsatz_einlesen(restguthaben):
-    while True:
-        eingabe = input(f"Einsatz (CHF{MINDESTEINSATZ} bis {restguthaben}):").strip()
-        try:
-            einsatz = int(eingabe)
-            if MINDESTEINSATZ <= einsatz <= restguthaben:
-                return einsatz
-        except ValueError:
-            pass
+    text= f"Einsatz (CHF{MINDESTEINSATZ}bis{restguthaben}):"
+    eingabe = input(text)
+    while not ist_gueltiger_einsatz(eingabe, restguthaben):
+        print("ungültiger Einsatz")
+        eingabe = input(text)
+    return int(eingabe)
 
-        print("Ungültiger Einsatz")
-
-def summe_einsaetze(wetten):
-    summe = 0
-    for wette in wetten:
-        summe += wette["einsatz"]
-    return summe
 
 def wetten_anzeigen(wetten, restguthaben):
     print("Deine Wetten:")
@@ -54,22 +60,46 @@ if guthaben < MINDESTEINSATZ:
     print("Game Over - Guthaben ist zu klein.")
     return
 
-wetten = []
-
+#dictionary für die wetten wenn runde läuft und neue wette false dann runde wird beendet.
 #loop um eine wette nach der anderen zu setzen:
-while True:
-    restguthaben = guthaben - summe_einsaetze(wetten)
-    auf = wette_einlesen()
-    einsatz = einsatz_einlesen(restguthaben)
 
-    #wetten speichern
-    wetten.append({"auf": auf, "einsatz": einsatz})
-    restguthaben = restguthaben - einsatz
-    wetten_anzeigen(wetten, restguthaben)
+wetten = []
+restguthaben = guthaben
+runde_laeuft = True
+neue_wette = True
 
-#inner loop (menu, drehen, abbrechen)
-
-while True:
+while runde_laeuft:
+    if neue_wette:
+        auf = wette_einlesen()
+        einsatz = einsatz_einlesen(restguthaben)
+        wetten.append({"auf": auf, "einsatz": einsatz})
+        restguthaben = restguthaben - einsatz
+        wetten_anzeigen(wetten, restguthaben)
+        neue_wette = False
     wahl = input("weiter / drehen / abbrechen?")
+
+    if wahl == "weiter":
+        if restguthaben < MINDESTEINSATZ:
+            print("Dein Guthaben reicht für keine weitere Wette.")
+        else:
+            neue_wette = True
+
+    elif wahl == "drehen":
+        if len(wetten) == 0:
+            print("Keine Wette gesetzt")
+        else:
+            zahl = auswertung.drehen()
+            auswertung.auswerten(spieler, name, wetten, zahl)
+            daten.speichern(spieler)
+            if spieler[name]["guthaben"] < MINDESTEINSATZ:
+                print("Game Over - dein Guthaben reicht nicht mehr zum spielen.")
+            runde_laeuft = False
+
+    elif wahl == "abbrechen":
+        print("Wetten gelöscht")
+        runde_laeuft = False
+
+    else:
+        print("Bitte weiter, drehen oder abbrechen eingeben.")
 
 
