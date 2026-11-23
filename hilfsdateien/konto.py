@@ -44,10 +44,16 @@ def login (spieler):
     return(name)
     
 
-def statistik (spieler, name): 
+def statistik(spieler, name):
+    print()
+    print("=" * 30)
     print("Statistik von", spieler[name]["name"])
-    print("Guthaben: ", spieler[name]["guthaben"])
+    print("-" * 30)
+    print("Guthaben:     ", spieler[name]["guthaben"])
     print("Anzahl Spiele:", spieler[name]["spiele"])
-    print("Gewinne:", spieler[name]["gewinne"])
-    print("Verluste:", spieler[name]["verluste"])
+    print("Gewinne:      ", spieler[name]["gewinne"])
+    print("Verluste:     ", spieler[name]["verluste"])
+    print("=" * 30)
+    print()
+    
 
