@@ -60,25 +60,46 @@ if guthaben < MINDESTEINSATZ:
     print("Game Over - Guthaben ist zu klein.")
     return
 
+#dictionary für die wetten wenn runde läuft und neue wette false dann runde wird beendet.
+#loop um eine wette nach der anderen zu setzen:
+
 wetten = []
 restguthaben = guthaben
 runde_laeuft = True
 neue_wette = True
 
-#loop um eine wette nach der anderen zu setzen:
-while True:
-    restguthaben = guthaben - summe_einsaetze(wetten)
-    auf = wette_einlesen()
-    einsatz = einsatz_einlesen(restguthaben)
-
-    #wetten speichern
-    wetten.append({"auf": auf, "einsatz": einsatz})
-    restguthaben = restguthaben - einsatz
-    wetten_anzeigen(wetten, restguthaben)
-
-#inner loop (menu, drehen, abbrechen)
-
-while True:
+while runde_laeuft:
+    if neue_wette:
+        auf = wette_einlesen()
+        einsatz = einsatz_einlesen(restguthaben)
+        wetten.append({"auf": auf, "einsatz": einsatz})
+        restguthaben = restguthaben - einsatz
+        wetten_anzeigen(wetten, restguthaben)
+        neue_wette = False
     wahl = input("weiter / drehen / abbrechen?")
+
+    if wahl == "weiter":
+        if restguthaben < MINDESTEINSATZ:
+            print("Dein Guthaben reicht für keine weitere Wette.")
+        else:
+            neue_wette = True
+
+    elif wahl == "drehen":
+        if len(wetten) == 0:
+            print("Keine Wette gesetzt")
+        else:
+            zahl = auswertung.drehen()
+            auswertung.auswerten(spieler, name, wetten, zahl)
+            daten.speichern(spieler)
+            if spieler[name]["guthaben"] < MINDESTEINSATZ:
+                print("Game Over - dein Guthaben reicht nicht mehr zum spielen.")
+            runde_laeuft = False
+
+    elif wahl == "abbrechen":
+        print("Wetten gelöscht")
+        runde_laeuft = False
+
+    else:
+        print("Bitte weiter, drehen oder abbrechen eingeben.")
 
 
