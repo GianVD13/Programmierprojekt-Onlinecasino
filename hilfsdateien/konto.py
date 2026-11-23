@@ -1,4 +1,4 @@
-#import main
+
 from hilfsdateien  import daten
 
 def registrieren (spieler):
