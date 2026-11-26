@@ -30,10 +30,15 @@ def hauptmenü(spieler, name):
         auswahl = int(input("Auswahl (1, 2, 3): "))
 
         if auswahl == 1:  # ruft die Funktion runde in roulette.py auf
-            roulette.runde(spieler, name)
+            while True:  # Endlosschleife, endet nur mit break
+                roulette.runde(spieler, name)
+                wahl = input("Weiterspielen? (ja/nein): ").strip().lower()
+                if wahl != "ja":  # alles ausser ja heisst: zurück
+                    break  # Schleife verlassen, zurück ins Hauptmenü
 
         elif auswahl == 2:  # ruft die Funktion statistik in konto.py auf
             konto.statistik(spieler, name)
+            input("Drücke Enter, um zurück zum Hauptmenü zu kommen ")
 
         elif auswahl == 3:  # zurück zum Startmenü
             print()
